@@ -18,13 +18,14 @@ object BasicWordCountStreaming {
 
     setupLogging()
 
-    // Escribir datos en el puerto 9999 con: nc -l 9999
     val lines = ssc.socketTextStream("localhost",9999)
     val words = lines.flatMap(_.split(" "))
     val pairs = words.map(word => (word, 1))
     val wordcounts = pairs.reduceByKey(_+_)
 
     wordcounts.print()
+
+    // Escribir datos en el puerto 9999 con: nc -l 9999 para ver la cuenta de cadenas
 
     ssc.start()
     ssc.awaitTermination()
