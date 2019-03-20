@@ -47,7 +47,7 @@ object TwitterHashtags {
     // Se crea un DStream de Twitter usando nuestro streaming context
     val tweets = TwitterUtils.createStream(ssc, None)
 
-    // Se estrae el texto de cada tuit de DStream
+    // Se extrae el texto de cada tuit de DStream
     val statuses = tweets.map(status => status.getText())
 
     // val Venezuela = statuses.filter(word => word.contains("Venezuela"))
